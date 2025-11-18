@@ -1,6 +1,7 @@
 # Virtual Environments
 venv-benchmarks/
 venv-python314/
+venv-project1/
 venv/
 env/
 ENV/
