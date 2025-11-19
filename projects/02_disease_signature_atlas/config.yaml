@@ -1,0 +1,67 @@
+# Configuration for Disease Signature Atlas Project
+
+data:
+  organism: "homo_sapiens"
+  tissues:
+    - "blood"
+    - "lung"
+    - "heart"
+  max_cells_per_tissue: 10000
+  census_version: "stable"
+
+diseases:
+  covid19:
+    name: "COVID-19"
+    disease_filter: "disease == 'COVID-19'"
+    control_filter: "disease == 'normal'"
+    tissues: ["blood", "lung", "heart"]
+
+scanpy:
+  # Quality control thresholds
+  min_genes: 200          # Minimum genes per cell
+  min_cells: 3            # Minimum cells per gene
+  mt_percent_max: 20      # Maximum mitochondrial percentage
+  
+  # Feature selection
+  n_top_genes: 2000       # Highly variable genes
+  
+  # Dimensionality reduction
+  n_pcs: 50               # PCA components
+  n_neighbors: 15         # For UMAP
+  
+  # Normalization
+  target_sum: 10000       # Counts per cell normalization
+  
+differential_expression:
+  method: "wilcoxon"      # Statistical test
+  min_pct: 0.25           # Minimum fraction of cells expressing
+  min_log2fc: 0.5         # Minimum log2 fold change
+  adj_pval_threshold: 0.05  # Adjusted p-value cutoff
+
+enrichment:
+  organism: "hsapiens"    # For pathway enrichment
+  sources:
+    - "GO:BP"             # Gene Ontology Biological Process
+    - "KEGG"              # KEGG pathways
+    - "REAC"              # Reactome
+
+models:
+  test_size: 0.2
+  random_state: 42
+  n_cv_folds: 5
+  classifiers:
+    - "RandomForest"
+    - "LogisticRegression"
+    - "XGBoost"
+
+visualization:
+  figure_dpi: 300
+  figure_format: "png"
+  color_palette: "Set2"
+  
+output:
+  results_dir: "results"
+  figures_dir: "results/figures"
+  signatures_dir: "results/signatures"
+  models_dir: "results/models"
+  reports_dir: "results/reports"
