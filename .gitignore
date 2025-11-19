@@ -2,6 +2,7 @@
 venv-benchmarks/
 venv-python314/
 venv-project1/
+venv-scanpy/
 venv/
 env/
 ENV/
