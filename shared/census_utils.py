@@ -128,8 +128,15 @@ def load_census_data(
             organism=organism,
             obs_coords=obs_soma_joinids,
             var_value_filter=f"feature_name in {var_names}" if var_names else None,
-            column_names={"obs": obs_columns} if obs_columns else None
+            column_names={
+                "obs": obs_columns,
+                "var": ["feature_id", "feature_name"]
+            }
         )
+        
+        # Set gene symbols as index for readability
+        adata.var = adata.var.set_index("feature_name")
+        adata.var_names_make_unique()
         
         if verbose:
             print(f"✓ Successfully loaded data: {adata.shape}")
