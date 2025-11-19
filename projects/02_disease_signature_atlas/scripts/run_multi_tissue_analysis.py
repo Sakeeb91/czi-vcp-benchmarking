@@ -33,8 +33,8 @@ def main():
     
     # Configuration
     disease_key = "covid19"
-    tissues = ["blood", "lung", "heart"]
-    max_cells = 1500  # Small for testing
+    tissues = ["blood", "lung"]
+    max_cells = 100  # Minimal for fast testing
     
     print(f"\nConfiguration:")
     print(f"  Disease: {disease_key}")
@@ -61,7 +61,7 @@ def main():
                 disease_key=disease_key,
                 tissues=[tissue],
                 max_cells_per_tissue=max_cells,
-                verbose=False
+                verbose=True
             )
         except Exception as e:
             print(f"  Skipping {tissue}: {e}")

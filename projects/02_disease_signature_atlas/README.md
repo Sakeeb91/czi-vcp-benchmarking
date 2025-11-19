@@ -20,7 +20,10 @@ This project discovers disease-specific gene signatures across multiple tissues 
 
 ```bash
 cd "/Users/sakeeb/Code repositories/vcp dataset exploration"
-source venv-benchmarks/bin/activate
+```bash
+cd "/Users/sakeeb/Code repositories/vcp dataset exploration"
+# Use the Scanpy-compatible environment (Python 3.11)
+source venv-scanpy/bin/activate
 cd projects/02_disease_signature_atlas
 
 # Test imports
@@ -31,6 +34,12 @@ python scripts/run_signature_discovery.py
 
 # Run multi-tissue analysis (Phase 4)
 python scripts/run_multi_tissue_analysis.py
+
+# Run ML validation (Phase 5)
+python scripts/run_ml_validation.py
+
+# Launch interactive dashboard (Phase 6)
+streamlit run app/app.py
 
 # Or test data loading only
 python scripts/download_data.py
