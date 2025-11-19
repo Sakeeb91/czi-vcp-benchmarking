@@ -15,7 +15,7 @@ def main():
         print("Loading data from Census...")
         adata, total_cells = load_census_data(
             tissue="blood",
-            max_cells=1000  # Reduced for faster iteration
+            max_cells=500  # Production-scale run
         )
         
         print("\n" + "="*50)
@@ -32,7 +32,7 @@ def main():
         # 3. Split Data
         print("Splitting data into train/test sets...")
         X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=0.2, random_state=42, stratify=y
+            X, y, test_size=0.2, random_state=42  # No stratify for small samples
         )
         print(f"Training set: {X_train.shape[0]} cells")
         print(f"Test set: {X_test.shape[0]} cells")
